@@ -1,0 +1,28 @@
+services:
+  dns-proxy:
+    image: fzymgc-house/container-dnscrypt-proxy:main
+    ports:
+      - 1053:53/udp
+      - 1053:53/tcp
+    volumes:
+      - /mnt/apps/dns-proxy/dnscrypt-proxy.toml:/etc/dnscrypt-proxy/dnscrypt-proxy.toml
+    environment:
+      - TZ=US/Eastern
+    restart: unless-stopped
+    networks:
+      default: {}
+      dnscrypt-proxy:
+        ipv4_address: 172.20.10.2
+
+networks:
+  default:
+    name: bridge
+    external: true
+  dnscrypt-proxy:
+    name: dnscrypt-proxy
+    driver: bridge
+    attachable: true
+    ipam:
+      config:
+        - subnet: 172.20.10.0/25
+
