@@ -13,8 +13,9 @@ services:
     dns:
       - 172.20.10.5
     networks:
-      - default
-      - dns
+      main: {}
+      dns:
+        ipv4_address: 172.20.10.10
     healthcheck:
       test: ["CMD", "caddy", "version"]
       interval: 30s
