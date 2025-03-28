@@ -1,7 +1,7 @@
 services:
   syncthing:
     container_name: syncthing-sean
-    image: docker.io/syncthing/syncthing:latest
+    image: docker.io/syncthing/syncthing:latest@sha256:59580c71260ea38d50247a0acebd6c608c6d59b78e651b0194943a8649841f82
     ports:
       - 20910:20910/tcp
       - 20978:22000/tcp
