@@ -1,5 +1,6 @@
 services:
   dns-proxy:
+    container_name: dns-proxy
     image: ghcr.io/fzymgc-house/container-dnscrypt-proxy:main
     ports:
       - 1053:53/udp
@@ -12,7 +13,7 @@ services:
     networks:
       main: {}
       dnscrypt-proxy:
-        ipv4_address: 172.20.10.2
+        ipv4_address: 172.20.10.5
 
 networks:
   main:
