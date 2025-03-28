@@ -1,7 +1,7 @@
 services:
   dns-proxy:
     container_name: dns-proxy
-    image: ghcr.io/fzymgc-house/container-dnscrypt-proxy:main@sha256:9abf6011284bcc0e06ba28e86da58f528da3810ba39cdf6817235489827989c0
+    image: ghcr.io/fzymgc-house/container-dnscrypt-proxy:main@sha256:15120a482cee075ce8f3c6401b9e2b9452d0a61b325b6f9161969473b5fe5712
     ports:
       - 1053:53/udp
       - 1053:53/tcp
