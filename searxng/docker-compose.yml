@@ -1,0 +1,22 @@
+services:
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    ports:
+      - 8888:8888
+    environment:
+      TZ: US/Eastern
+      BASE_URL: https://searxng.fzymgc.house
+      INSTANCE_NAME: fzymgc-house
+      SEARXNG_SECRET: "bb31a4e72ccbd0adaf9e88b510501afe5269d593fdb9a346271721cf85b8b331"
+      SEARXNG_IMAGE_PROXY: true
+      SEARXNG_PUBLIC_INSTANCE: false
+      SEARXNG_LIMITER: true
+      SEARXNG_REDIS_URL: redis://redis:6379
+    volumes:
+      - /mnt/apps/searxng/etc:/etc/searxng:ro
+  redis:
+    image: valkey:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - /mnt/apps/searxng/redis:/data
