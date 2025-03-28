@@ -16,13 +16,32 @@ services:
     networks:
       main: {}
       internal: {}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
   redis:
     image: valkey/valkey:latest
     volumes:
       - /mnt/apps/searxng/redis:/data
     networks:
-      - internal
-
+      internal: {}
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
 networks:
   main:
     name: main-bridge

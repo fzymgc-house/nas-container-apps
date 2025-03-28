@@ -14,7 +14,14 @@ services:
       main: {}
       dnscrypt-proxy:
         ipv4_address: 172.20.10.5
-
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
 networks:
   main:
     external: true
