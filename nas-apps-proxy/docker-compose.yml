@@ -23,8 +23,8 @@ services:
       start_period: 10s
 
 networks:
-  default:
-    name: bridge
+  main:
+    name: main-bridge
     external: true
   dns:
     external: true
