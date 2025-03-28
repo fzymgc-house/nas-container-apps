@@ -10,14 +10,14 @@ services:
       - TZ=US/Eastern
     restart: unless-stopped
     networks:
-      default: {}
+      main: {}
       dnscrypt-proxy:
         ipv4_address: 172.20.10.2
 
 networks:
-  default:
-    name: bridge
+  main:
     external: true
+    name: main-bridge
   dnscrypt-proxy:
     name: dnscrypt-proxy
     driver: bridge
