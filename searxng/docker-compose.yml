@@ -18,8 +18,6 @@ services:
       internal: {}
   redis:
     image: valkey/valkey:latest
-    ports:
-      - 6379:6379
     volumes:
       - /mnt/apps/searxng/redis:/data
     networks:
