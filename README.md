@@ -1,5 +1,6 @@
 # NAS Container Applications
 
+
 This repository contains Docker Compose definitions for various applications running on my NAS. These configurations are designed to be deployed on a home network storage (NAS) system, providing a centralized and organized way to manage containerized services.
 
 ## Structure
@@ -12,6 +13,9 @@ Each application has its own directory containing:
 
 ### DNS Proxy
 A DNSCrypt proxy service that provides encrypted DNS resolution, enhancing privacy and security for the network.
+
+### NAS Apps Proxy
+A Caddy reverse proxy service that provides secure HTTPS access to various NAS applications, with automatic SSL certificate management and unified access point.
 
 ## Usage
 
