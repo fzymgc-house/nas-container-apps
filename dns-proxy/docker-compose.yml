@@ -1,6 +1,6 @@
 services:
   dns-proxy:
-    image: fzymgc-house/container-dnscrypt-proxy:main
+    image: ghcr.io/fzymgc-house/container-dnscrypt-proxy:main
     ports:
       - 1053:53/udp
       - 1053:53/tcp
