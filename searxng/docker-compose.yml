@@ -1,8 +1,7 @@
 services:
   searxng:
     image: docker.io/searxng/searxng:latest
-    ports:
-      - 8888:8888
+    hostname: searxng
     environment:
       TZ: US/Eastern
       BASE_URL: https://searxng.fzymgc.house
@@ -14,9 +13,22 @@ services:
       SEARXNG_REDIS_URL: redis://redis:6379
     volumes:
       - /mnt/apps/searxng/etc:/etc/searxng:ro
+    networks:
+      main: {}
+      internal: {}
   redis:
     image: valkey:latest
     ports:
       - 6379:6379
     volumes:
       - /mnt/apps/searxng/redis:/data
+    networks:
+      - internal
+
+networks:
+  main:
+    name: main-bridge
+    external: true
+  internal:
+    name: internal
+

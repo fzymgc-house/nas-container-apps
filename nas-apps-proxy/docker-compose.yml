@@ -2,6 +2,7 @@ services:
   caddy:
     image: ghcr.io/fzymgc-house/caddy-custom:main@sha256:705aa89d3925f35369f59457b3cb37b61db19ffb20da64e7b80b73a0c4843505
     container_name: nas-apps-proxy
+    hostname: nas-apps-proxy
     restart: unless-stopped
     ports:
       - "80:80"
