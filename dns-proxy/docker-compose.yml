@@ -6,7 +6,7 @@ services:
       - 1053:53/udp
       - 1053:53/tcp
     volumes:
-      - /mnt/apps/dns-proxy:/etc/dnscrypt-proxy:ro
+      - ./etc:/etc/dnscrypt-proxy:ro
     environment:
       - TZ=US/Eastern
     restart: unless-stopped
