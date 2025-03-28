@@ -1,0 +1,32 @@
+services:
+  syncthing:
+    container_name: syncthing-sean
+    image: docker.io/syncthing/syncthing:latest
+    ports:
+      - 20910:20910/tcp
+      - 20978:22000/tcp
+      - 20979:22000/udp
+    environment:
+      UID: 568
+      GID: 568
+      GROUP_ID: 568
+      HOME: /var/syncthing
+      PGID: 568
+      PUID: 568
+      STGUIADDRESS: 0.0.0.0:20910
+      STNOUPGRADE: true
+      UMASK: 002
+      UMASK_SET: 002
+      USER_ID: 568
+      TZ: US/Eastern
+    volumes:
+      - /mnt/main/homes/sean:/mnt/homes/sean
+      - /mnt/apps/syncthing-sean/config:/var/syncthing
+    restart: unless-stopped
+    networks:
+      main: {}
+
+networks:
+  main:
+    external: true
+    name: main-bridge
