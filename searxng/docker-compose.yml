@@ -1,6 +1,6 @@
 services:
   searxng:
-    image: docker.io/searxng/searxng:latest
+    image: docker.io/searxng/searxng:latest@sha256:2995386b25edce5f3f1e8e545a2d91ca3d326483ffb362b4bddf3794e6d286db
     hostname: searxng
     environment:
       TZ: US/Eastern
@@ -27,7 +27,7 @@ services:
       options:
         max-size: "1m"
   redis:
-    image: valkey/valkey:latest
+    image: valkey/valkey:latest@sha256:08ffc65e795d6a2082543431b07756816928816c1704141043a62dfc5ed36d8b
     volumes:
       - /mnt/apps/searxng/redis:/data
     networks:
