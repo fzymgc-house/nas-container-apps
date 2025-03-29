@@ -13,6 +13,8 @@ services:
       SEARXNG_REDIS_URL: redis://redis:6379
     volumes:
       - /mnt/apps/searxng/etc:/etc/searxng
+    ports:
+      - "127.0.0.1:29999:8080"
     networks:
       main: {}
       internal: {}
