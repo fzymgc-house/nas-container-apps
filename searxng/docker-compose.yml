@@ -1,6 +1,6 @@
 services:
   searxng:
-    image: docker.io/searxng/searxng:latest@sha256:1625cb954ccefa6e9db5e2a2ebb11cedd4822c5395997b45c7040fa75da26736
+    image: docker.io/searxng/searxng:latest@sha256:4096cf9f6eae8f82a3d5529f1b0f510fade570ece75439fafd0427b24acf8ce2
     hostname: searxng
     environment:
       TZ: US/Eastern
