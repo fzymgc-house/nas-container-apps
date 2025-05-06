@@ -29,7 +29,7 @@ services:
       options:
         max-size: "1m"
   redis:
-    image: valkey/valkey:latest@sha256:08ffc65e795d6a2082543431b07756816928816c1704141043a62dfc5ed36d8b
+    image: valkey/valkey:latest@sha256:ff21bc0f8194dc9c105b769aeabf9585fea6a8ed649c0781caeac5cb3c247884
     volumes:
       - /mnt/apps/searxng/redis:/data
     networks:
