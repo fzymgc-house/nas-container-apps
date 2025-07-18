@@ -37,6 +37,7 @@ services:
     cap_drop:
       - ALL
     cap_add:
+      - CHOWN
       - SETGID
       - SETUID
       - DAC_OVERRIDE
@@ -44,10 +45,6 @@ services:
       driver: "json-file"
       options:
         max-size: "1m"
-    post_start:
-      - command: chown -R valkey:valkey /data
-        user: root
-        privileged: true
 networks:
   main:
     name: main-bridge
