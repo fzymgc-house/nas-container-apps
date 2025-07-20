@@ -14,7 +14,7 @@ services:
     volumes:
       - /mnt/apps/searxng/etc:/etc/searxng
     ports:
-      - "127.0.0.1:29999:8080"
+      - "29999:8080"
     networks:
       main:
         aliases:
