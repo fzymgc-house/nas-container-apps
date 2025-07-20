@@ -1,0 +1,64 @@
+services:
+  web:
+    image: ghcr.io/karakeep-app/karakeep:${KARAKEEP_VERSION:-release}
+    restart: unless-stopped
+    volumes:
+      # By default, the data is stored in a docker volume called "data".
+      # If you want to mount a custom directory, change the volume mapping to:
+      # - /path/to/your/directory:/data
+      - /mnt/data/karakeep/data:/data
+    ports:
+      - 3000:3000
+    environment:
+      MEILI_ADDR: http://meilisearch:7700
+      BROWSER_WEB_URL: http://chrome:9222
+      KARAKEEP_ADDRESS: https://karakeep.fzymgc.house
+      NEXTAUTH_URL: https://karakeep.fzymgc.house
+      DISABLE_PASSWORD_AUTH: "true"
+      OAUTH_WELLKNOWN_URL: https://auth.fzymgc.house/application/o/karakeep/.well-known/openid-configuration
+      OAUTH_CLIENT_ID: "${KARAKEEP_OAUTH_CLIENT_ID:-}"
+      OAUTH_CLIENT_SECRET: "${KARAKEEP_OAUTH_CLIENT_SECRET:-}"
+      OAUTH_PROVIDER_NAME: authentik
+      OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: "true"
+      OPENAI_API_KEY: "${KARAKEEP_OPENAI_API_KEY:-}"
+      DATA_DIR: /data # DON'T CHANGE THIS
+    networks:
+      main:
+        aliases:
+          - karakeep
+      internal:
+        aliases:
+          - karakeep
+  chrome:
+    image: gcr.io/zenika-hub/alpine-chrome:123
+    restart: unless-stopped
+    command:
+      - --no-sandbox
+      - --disable-gpu
+      - --disable-dev-shm-usage
+      - --remote-debugging-address=0.0.0.0
+      - --remote-debugging-port=9222
+      - --hide-scrollbars
+    networks:
+      internal:
+        aliases:
+          - chrome
+  meilisearch:
+    image: getmeili/meilisearch:v1.13.3
+    restart: unless-stopped
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: "${KARAKEEP_MEILI_MASTER_KEY:-}"
+    volumes:
+      - /mnt/data/karakeep/meili:/meili_data
+    networks:
+      internal:
+        aliases:
+          - meilisearch
+
+networks:
+  main:
+    name: main-bridge
+    external: true
+  internal:
+    name: internal
