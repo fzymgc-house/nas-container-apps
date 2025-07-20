@@ -16,8 +16,12 @@ services:
     ports:
       - "127.0.0.1:29999:8080"
     networks:
-      main: {}
-      internal: {}
+      main:
+        aliases:
+          - searxng
+      internal:
+        aliases:
+          - searxng
     cap_drop:
       - ALL
     cap_add:
@@ -33,7 +37,10 @@ services:
     volumes:
       - /mnt/data/searxng/redis:/data
     networks:
-      internal: {}
+      internal:
+        aliases:
+          - redis
+          - valkey
     cap_drop:
       - ALL
     cap_add:
