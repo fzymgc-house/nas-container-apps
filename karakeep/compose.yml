@@ -30,7 +30,7 @@ services:
         aliases:
           - karakeep
   chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:123
+    image: gcr.io/zenika-hub/alpine-chrome:123@sha256:e38563d4475a3d791e986500a2e4125c9afd13798067138881cf770b1f6f3980
     restart: unless-stopped
     command:
       - --no-sandbox
@@ -44,7 +44,7 @@ services:
         aliases:
           - chrome
   meilisearch:
-    image: getmeili/meilisearch:v1.13.3
+    image: getmeili/meilisearch:v1.13.3@sha256:bed3fb650e62da53145777204891159242f6ea4ce69e215b36223af4aa64a0ae
     restart: unless-stopped
     environment:
       MEILI_NO_ANALYTICS: "true"
