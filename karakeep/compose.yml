@@ -16,11 +16,8 @@ services:
       NEXTAUTH_URL: https://karakeep.fzymgc.house
       DISABLE_PASSWORD_AUTH: "true"
       OAUTH_WELLKNOWN_URL: https://auth.fzymgc.house/application/o/karakeep/.well-known/openid-configuration
-      OAUTH_CLIENT_ID: "${KARAKEEP_OAUTH_CLIENT_ID:-}"
-      OAUTH_CLIENT_SECRET: "${KARAKEEP_OAUTH_CLIENT_SECRET:-}"
       OAUTH_PROVIDER_NAME: authentik
       OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: "true"
-      OPENAI_API_KEY: "${KARAKEEP_OPENAI_API_KEY:-}"
       DATA_DIR: /data # DON'T CHANGE THIS
     networks:
       main:
@@ -48,7 +45,6 @@ services:
     restart: unless-stopped
     environment:
       MEILI_NO_ANALYTICS: "true"
-      MEILI_MASTER_KEY: "${KARAKEEP_MEILI_MASTER_KEY:-}"
     volumes:
       - /mnt/data/karakeep/meili:/meili_data
     networks:
