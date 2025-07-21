@@ -19,6 +19,7 @@ services:
       OAUTH_WELLKNOWN_URL: "https://auth.fzymgc.house/application/o/karakeep/.well-known/openid-configuration"
       OAUTH_PROVIDER_NAME: authentik
       OAUTH_ALLOW_DANGEROUS_EMAIL_ACCOUNT_LINKING: "true"
+      NODE_EXTRA_CA_CERTS: /etc/ssl/certs/ca-certificates.crt
       DATA_DIR: /data # DON'T CHANGE THIS
     env_file: .env
     networks:
