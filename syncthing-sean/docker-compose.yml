@@ -2,7 +2,7 @@ services:
   syncthing:
     container_name: syncthing-sean
     hostname: syncthing-sean
-    image: docker.io/syncthing/syncthing:latest@sha256:59580c71260ea38d50247a0acebd6c608c6d59b78e651b0194943a8649841f82
+    image: docker.io/syncthing/syncthing:latest@sha256:74eeedb08d4912763055594f8bd98bfc039f3bc504b6cd2c2adc8294111c1251
     environment:
       UID: 568
       GID: 568
