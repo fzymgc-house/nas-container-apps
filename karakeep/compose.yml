@@ -43,7 +43,7 @@ services:
         aliases:
           - chrome
   meilisearch:
-    image: getmeili/meilisearch:v1.13.3@sha256:bed3fb650e62da53145777204891159242f6ea4ce69e215b36223af4aa64a0ae
+    image: getmeili/meilisearch:v1.15.2@sha256:fe500cf9cca05cb9f027981583f28eccf17d35d94499c1f8b7b844e7418152fc
     restart: unless-stopped
     environment:
       MEILI_NO_ANALYTICS: "true"
