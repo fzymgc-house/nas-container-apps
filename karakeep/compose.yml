@@ -14,7 +14,7 @@ services:
       MEILI_ADDR: "http://meilisearch:7700"
       BROWSER_WEB_URL: "http://chrome:9222"
       KARAKEEP_ADDRESS: "https://karakeep.fzymgc.house"
-      NEXTAUTH_URL: "https://auth.fzymgc.house"
+      NEXTAUTH_URL: "https://karakeep.fzymgc.house"
       DISABLE_PASSWORD_AUTH: "true"
       OAUTH_WELLKNOWN_URL: "https://auth.fzymgc.house/application/o/karakeep/.well-known/openid-configuration"
       OAUTH_PROVIDER_NAME: authentik
