@@ -39,7 +39,7 @@ services:
       options:
         max-size: "1m"
     depends_on:
-      redis:
+      valkey:
         condition: service_healthy
   valkey:
     image: valkey/valkey:latest@sha256:facc1d2c3462975c34e10fccb167bfa92b0e0dbd992fc282c29a61c3243afb11
