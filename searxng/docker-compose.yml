@@ -2,6 +2,13 @@ services:
   searxng:
     image: docker.io/searxng/searxng:latest@sha256:8f1196f03960ebae2292ba7b6d3e074c643abded31ad5bb0d0e971e20670156c
     hostname: searxng
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.searxng.rule=Host(`searxng.fzymgc.house`)"
+      - "traefik.http.routers.searxng.entrypoints=websecure"
+      - "traefik.http.routers.searxng.tls=true"
+      - "traefik.http.routers.searxng.tls.certresolver=letsencrypt"
+      - "traefik.http.services.searxng.loadbalancer.server.port=8080"
     environment:
       TZ: US/Eastern
       BASE_URL: https://searxng.fzymgc.house
@@ -13,13 +20,11 @@ services:
       SEARXNG_REDIS_URL: redis://redis:6379
     volumes:
       - /mnt/apps/searxng/etc:/etc/searxng
-    ports:
-      - "29999:8080"
     networks:
-      main:
+      main-bridge:
         aliases:
           - searxng
-      internal:
+      internal-bridge:
         aliases:
           - searxng
     cap_drop:
@@ -37,7 +42,7 @@ services:
     volumes:
       - /mnt/data/searxng/redis:/data
     networks:
-      internal:
+      internal-bridge:
         aliases:
           - redis
           - valkey
@@ -53,9 +58,9 @@ services:
       options:
         max-size: "1m"
 networks:
-  main:
+  main-bridge:
     name: main-bridge
     external: true
-  internal:
+  internal-bridge:
     name: internal
 
