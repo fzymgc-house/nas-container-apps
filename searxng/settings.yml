@@ -548,6 +548,7 @@ engines:
   - name: bing news
     engine: bing_news
     shortcut: bin
+    disabled: true
 
   - name: bing videos
     engine: bing_videos

@@ -7,7 +7,7 @@ services:
       - "traefik.http.routers.searxng.rule=Host(`searxng.fzymgc.house`)"
       - "traefik.http.routers.searxng.entrypoints=websecure"
       - "traefik.http.routers.searxng.tls=true"
-      - "traefik.http.routers.searxng.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.searxng.tls.certresolver=cloudflare"
       - "traefik.http.services.searxng.loadbalancer.server.port=8080"
     environment:
       TZ: US/Eastern
