@@ -19,7 +19,7 @@ services:
       SEARXNG_LIMITER: true
       SEARXNG_REDIS_URL: redis://redis:6379
     volumes:
-      - /mnt/apps/searxng/etc:/etc/searxng
+      - /mnt/data/nas-container-apps/searxng/etc:/etc/searxng
     networks:
       main-bridge:
         aliases:
@@ -40,7 +40,7 @@ services:
   redis:
     image: valkey/valkey:latest@sha256:facc1d2c3462975c34e10fccb167bfa92b0e0dbd992fc282c29a61c3243afb11
     volumes:
-      - /mnt/data/searxng/redis:/data
+      - /mnt/data/nas-container-apps/searxng/redis:/data
     networks:
       internal-bridge:
         aliases:

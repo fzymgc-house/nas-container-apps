@@ -14,7 +14,7 @@ services:
       # By default, the data is stored in a docker volume called "data".
       # If you want to mount a custom directory, change the volume mapping to:
       # - /path/to/your/directory:/data
-      - /mnt/data/karakeep/data:/data
+      - /mnt/data/nas-container-apps/karakeep/data:/data
       - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
       MEILI_ADDR: "http://meilisearch:7700"
@@ -56,7 +56,7 @@ services:
       MEILI_NO_ANALYTICS: "true"
     env_file: .env
     volumes:
-      - /mnt/data/karakeep/meili:/meili_data
+      - /mnt/data/nas-container-apps/karakeep/meili:/meili_data
     networks:
       internal-bridge:
         aliases:
