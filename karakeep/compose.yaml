@@ -7,7 +7,7 @@ services:
       - "traefik.http.routers.karakeep.rule=Host(`karakeep.fzymgc.house`)"
       - "traefik.http.routers.karakeep.entrypoints=websecure"
       - "traefik.http.routers.karakeep.tls=true"
-      - "traefik.http.routers.karakeep.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.karakeep.tls.certresolver=cloudflare"
       - "traefik.http.services.karakeep.loadbalancer.server.port=3000"
       - "traefik.http.services.karakeep.loadbalancer.server.scheme=http"
     volumes:
@@ -29,10 +29,10 @@ services:
       DATA_DIR: /data # DON'T CHANGE THIS
     env_file: .env
     networks:
-      main-bridge:
+      main:
         aliases:
           - karakeep
-      internal-bridge:
+      internal:
         aliases:
           - karakeep
   chrome:
@@ -46,7 +46,7 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
     networks:
-      internal-bridge:
+      internal:
         aliases:
           - chrome
   meilisearch:
@@ -58,7 +58,7 @@ services:
     volumes:
       - /mnt/data/nas-container-apps/karakeep/meili:/meili_data
     networks:
-      internal-bridge:
+      internal:
         aliases:
           - meilisearch
 
