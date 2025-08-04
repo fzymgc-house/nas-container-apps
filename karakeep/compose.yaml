@@ -53,6 +53,7 @@ services:
     image: getmeili/meilisearch:v1.16.0@sha256:c0c45cb82a96221d7c855d1cc36ca04ff4b3ce6330fbd8df5ba82e86e632a053
     restart: unless-stopped
     command:
+      - meilisearch
       - --experimental-dumpless-upgrade
     environment:
       MEILI_NO_ANALYTICS: "true"
