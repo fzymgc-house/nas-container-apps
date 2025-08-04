@@ -61,6 +61,9 @@ services:
     volumes:
       - /mnt/data/nas-container-apps/karakeep/meili:/meili_data
     networks:
+      main:
+        aliases:
+          - meilisearch
       internal:
         aliases:
           - meilisearch
