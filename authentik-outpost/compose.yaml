@@ -2,7 +2,7 @@ services:
   authentik_proxy:
     hostname: auth-outpost
     container_name: auth-outpost
-    image: ghcr.io/goauthentik/proxy:2025.6.2
+    image: ghcr.io/goauthentik/proxy:2025.6.2@sha256:28b0c3cb55ad82f08b9c0a32854fac0b7bd347149c57a1b1dc9ecdb88a72d6c9
     environment:
       AUTHENTIK_HOST: https://auth.fzymgc.house
       AUTHENTIK_INSECURE: "false"
