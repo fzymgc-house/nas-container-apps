@@ -1,3 +1,4 @@
+# for logs
 services:
   dozzle:
     image: amir20/dozzle:latest
