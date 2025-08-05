@@ -1,6 +1,6 @@
 services:
     authentik_proxy:
-        image: ghcr.io/goauthentik/proxy
+        image: ghcr.io/goauthentik/proxy:2025.6.4
         ports:
             - 9000:9000
             - 9443:9443
