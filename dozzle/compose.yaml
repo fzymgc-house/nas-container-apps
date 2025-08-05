@@ -4,7 +4,7 @@ services:
     image: amir20/dozzle:latest
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dozzle.rule=Host(`dozzle.fzymgc.house`)"
+      - "traefik.http.routers.dozzle.rule=Host(`nas-dozzle.fzymgc.house`)"
       - "traefik.http.routers.dozzle.entrypoints=websecure"
       - "traefik.http.routers.dozzle.tls=true"
       - "traefik.http.routers.dozzle.tls.certresolver=cloudflare"
