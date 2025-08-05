@@ -1,19 +1,18 @@
 services:
-    authentik_proxy:
-        image: ghcr.io/goauthentik/proxy:2025.6.2
-        ports:
-            - 9000:9000
-            - 9443:9443
-        environment:
-            AUTHENTIK_HOST: https://auth.fzymgc.house
-            AUTHENTIK_INSECURE: "false"
-            # AUTHENTIK_TOKEN must be set in .env
-        networks:
-            - main
-            - internal
-        env_file: .env
-        volumes:
-          - /etc/ssl/certs:/etc/ssl/certs
+  authentik_proxy:
+    hostname: auth-outpost
+    container_name: auth-outpost
+    image: ghcr.io/goauthentik/proxy:2025.6.2
+    environment:
+      AUTHENTIK_HOST: https://auth.fzymgc.house
+      AUTHENTIK_INSECURE: "false"
+      # AUTHENTIK_TOKEN must be set in .env
+    networks:
+      - main
+      - internal
+    env_file: .env
+    volumes:
+      - /etc/ssl/certs:/etc/ssl/certs
 networks:
   main:
     name: main-bridge
