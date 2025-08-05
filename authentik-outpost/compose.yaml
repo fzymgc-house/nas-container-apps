@@ -12,6 +12,8 @@ services:
             - main
             - internal
         env_file: .env
+        volumes:
+          - /etc/ssl/certs:/etc/ssl/certs
 networks:
   main:
     name: main-bridge
