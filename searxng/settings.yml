@@ -249,29 +249,78 @@ plugins:
 
 # Configuration of the "Hostnames plugin":
 #
-# hostnames:
-#   replace:
-#     '(.*\.)?youtube\.com$': 'yt.example.com'
-#     '(.*\.)?youtu\.be$': 'yt.example.com'
-#     '(.*\.)?reddit\.com$': 'teddit.example.com'
-#     '(.*\.)?redd\.it$': 'teddit.example.com'
-#     '(www\.)?twitter\.com$': 'nitter.example.com'
-#   remove:
-#     - '(.*\.)?facebook.com$'
-#   low_priority:
-#     - '(.*\.)?google(\..*)?$'
-#   high_priority:
-#     - '(.*\.)?wikipedia.org$'
-#
-# Alternatively you can use external files for configuring the "Hostnames plugin":
-#
-# hostnames:
-#  replace: 'rewrite-hosts.yml'
-#
-# Content of 'rewrite-hosts.yml' (place the file in the same directory as 'settings.yml'):
-# '(.*\.)?youtube\.com$': 'yt.example.com'
-# '(.*\.)?youtu\.be$': 'yt.example.com'
-#
+hostnames:
+  # Based on Kagi's leaderboard - domains users commonly block/lower
+  remove:
+    - '(.*\.)?pinterest(\..*)?$'
+    - '(.*\.)?tiktok\.com$'
+    - '(.*\.)?foxnews\.com$'
+    - '(.*\.)?breitbart\.com$'
+    - '(.*\.)?dailymail\.co\.uk$'
+    - '(.*\.)?facebook\.com$'
+    - '(.*\.)?quora\.com$'
+    - '(.*\.)?instagram\.com$'
+    - '(.*\.)?twitter\.com$'
+    - '(.*\.)?x\.com$'
+    - '(.*\.)?msn\.com$'
+    - '(.*\.)?w3schools\.com$'
+    - '(.*\.)?appsloveworld\.com$'
+    - '(.*\.)?geeksforgeeks\.org$'
+    - '(.*\.)?alternativeto\.net$'
+    - '(.*\.)?libhunt\.com$'
+    - '(.*\.)?githubplus\.com$'
+    - '(.*\.)?healthline\.com$'
+    - '(.*\.)?nypost\.com$'
+    - '(.*\.)?cnn\.com$'
+    - '(.*\.)?amazon(\..*)?$'
+    - '(.*\.)?linkedin\.com$'
+    - '(.*\.)?wikihow\.com$'
+    - '(.*\.)?webmd\.com$'
+    - '(.*\.)?9to5answer\.com$'
+    - '(.*\.)?codegrepper\.com$'
+    - '(.*\.)?newbedev\.com$'
+    - '(.*\.)?programcreek\.com$'
+    - '(.*\.)?bleepcoder\.com$'
+    - '(.*\.)?drivereasy\.com$'
+    - '(.*\.)?educba\.com$'
+    - '(.*\.)?blog\.csdn\.net$'
+    - '(.*\.)?kknews\.cc$'
+    - '(.*\.)?geekrepos\.com$'
+    - '(.*\.)?otosection\.com$'
+    - '(.*\.)?lightrun\.com$'
+    - '(.*\.)?issuehint\.com$'
+    - '(.*\.)?giters\.com$'
+    - '(.*\.)?coder\.social$'
+    - '(.*\.)?solveforum\.com$'
+    - '(.*\.)?forbes\.com$'
+    - '(.*\.)?washingtonpost\.com$'
+    - '(.*\.)?you\.com$'
+  # Based on Kagi's leaderboard - domains users commonly raise/pin
+  high_priority:
+    - '(.*\.)?github\.com$'
+    - '(.*\.)?stackoverflow\.com$'
+    - '(.*\.)?developer\.mozilla\.org$'
+    - '(.*\.)?wikipedia\.org$'
+    - '(.*\.)?wikimedia\.org$'
+    - '(.*\.)?arxiv\.org$'
+    - '(.*\.)?pubmed\.gov$'
+    - '(.*\.)?scholar\.google\.com$'
+    - '(.*\.)?gentoo\.org$'
+    - '(.*\.)?archlinux\.org$'
+    - '(.*\.)?nixos\.org$'
+    - '(.*\.)?docker\.com$'
+    - '(.*\.)?pypi\.org$'
+    - '(.*\.)?crates\.io$'
+    - '(.*\.)?npmjs\.com$'
+    - '(.*\.)?pub\.dev$'
+    - '(.*\.)?rubygems\.org$'
+    - '(.*\.)?hackage\.haskell\.org$'
+    - '(.*\.)?hex\.pm$'
+    - '(.*\.)?metacpan\.org$'
+    - '(.*\.)?bitbucket\.org$'
+    - '(.*\.)?gitlab\.com$'
+    - '(.*\.)?codeberg\.org$'
+    - '(.*\.)?gitea\.com$'
 
 checker:
   # disable checker when in debug mode
@@ -469,13 +518,15 @@ engines:
   - name: arch linux wiki
     engine: archlinux
     shortcut: al
+    weight: 8
 
   - name: nixos wiki
     engine: mediawiki
     shortcut: nixw
+    weight: 8
     base_url: https://wiki.nixos.org/
     search_type: text
-    disabled: true
+    disabled: false
     categories: [it, software wikis]
 
   - name: artic
@@ -486,6 +537,7 @@ engines:
   - name: arxiv
     engine: arxiv
     shortcut: arx
+    weight: 9
     timeout: 4.0
 
   - name: ask
@@ -527,6 +579,7 @@ engines:
   - name: wikipedia
     engine: wikipedia
     shortcut: wp
+    weight: 10
     # add "list" to the array to get results in the results list
     display_type: ["infobox"]
     categories: [general]
@@ -809,7 +862,7 @@ engines:
     engine: wikidata
     shortcut: wd
     timeout: 3.0
-    weight: 2
+    weight: 8
     # add "list" to the array to get results in the results list
     display_type: ["infobox"]
     tests: *tests_infobox
@@ -818,6 +871,7 @@ engines:
   - name: duckduckgo
     engine: duckduckgo
     shortcut: ddg
+    weight: 9
 
   - name: duckduckgo images
     engine: duckduckgo_extra
@@ -957,6 +1011,7 @@ engines:
   - name: gentoo
     engine: mediawiki
     shortcut: ge
+    weight: 8
     categories: ["it", "software wikis"]
     base_url: "https://wiki.gentoo.org/"
     api_path: "api.php"
@@ -983,6 +1038,7 @@ engines:
   - name: github
     engine: github
     shortcut: gh
+    weight: 10
 
   - name: codeberg
     # https://docs.searxng.org/dev/engines/online/gitea.html
@@ -1300,6 +1356,7 @@ engines:
   - name: mdn
     shortcut: mdn
     engine: json_engine
+    weight: 10
     categories: [it]
     paging: true
     search_url: https://developer.mozilla.org/api/v1/search?q={query}&page={pageno}
@@ -1877,6 +1934,7 @@ engines:
   - name: stackoverflow
     engine: stackexchange
     shortcut: st
+    weight: 10
     api_site: 'stackoverflow'
     categories: [it, q&a]
 
@@ -1960,6 +2018,7 @@ engines:
   - name: startpage
     engine: startpage
     shortcut: sp
+    weight: 8
     startpage_categ: web
     categories: [general, web]
     additional_tests:
@@ -2605,6 +2664,7 @@ engines:
   - name: brave
     engine: brave
     shortcut: br
+    weight: 9
     time_range_support: true
     paging: true
     categories: [general, web]
