@@ -1,6 +1,6 @@
 services:
   searxng:
-    image: docker.io/searxng/searxng:latest@sha256:5a946b752b551c4669b40ec44c6d33b80b27f4f6dd9021a0b9d4428e60fd0bf2
+    image: docker.io/searxng/searxng:latest@sha256:9d53db5b2d2a43c042efe34a497be7db1e7093dc909f6b5b67d548f0f501d2f8
     hostname: searxng
     labels:
       - "traefik.enable=true"
