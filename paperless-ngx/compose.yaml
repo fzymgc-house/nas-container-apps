@@ -20,6 +20,7 @@ services:
       - /mnt/paperless-data/storage/media:/usr/src/paperless/media
       - /mnt/paperless-data/export:/usr/src/paperless/export
       - /mnt/paperless-data/ingestion:/usr/src/paperless/consume
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     env_file: .env
     environment:
       PAPERLESS_REDIS: redis://valkey:6379
@@ -31,6 +32,24 @@ services:
       PAPERLESS_ALLOWED_HOSTS: paperless.fzymgc.house
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
       PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
+        {
+          "openid_connect": {
+            "APPS": [
+              {
+                "provider_id": "authentik",
+                "name": "Authentik",
+                "client_id": "${PAPERLESS_OIDC_CLIENT_ID}",
+                "secret": "${PAPERLESS_OIDC_CLIENT_SECRET}",
+                "settings": {
+                  "server_url": "https://auth.fzymgc.house/application/o/paperless/.well-known/openid-configuration"
+                }
+              }
+            ],
+            "OAUTH_PKCE_ENABLED": "True"
+          }
+        }      
     networks:
       main:
         aliases:
@@ -47,6 +66,7 @@ services:
       - ./pg_init.sh:/docker-entrypoint-initdb.d/pg_init.sh
     env_file: .env
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       internal:
