@@ -44,10 +44,9 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/postgres:/var/lib/postgresql/data
+      - ./pg_init.sh:/docker-entrypoint-initdb.d/pg_init.sh
     env_file: .env
     environment:
-      POSTGRES_DB: paperless
-      POSTGRES_USER: paperless
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       internal:
