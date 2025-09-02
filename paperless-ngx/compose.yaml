@@ -112,6 +112,14 @@ services:
 
   ai-classifier:
     image: docker.io/clusterzx/paperless-ai:3.0.7
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paperless-ai-classifier.rule=Host(`paperless.fzymgc.house`) && PathPrefix(`/ai-classifier`)"
+      - "traefik.http.routers.paperless-ai-classifier.entrypoints=websecure"
+      - "traefik.http.routers.paperless-ai-classifier.tls=true"
+      - "traefik.http.routers.paperless-ai-classifier.tls.certresolver=cloudflare"
+      - "traefik.http.services.paperless-ai-classifier.loadbalancer.server.port=3000"
+      - "traefik.http.routers.paperless-ai-classifier.middlewares=authentik@file"
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/ai-classifier:/data
@@ -121,9 +129,6 @@ services:
     environment:
       PAPERLESS_API_URL: http://webserver:8000
     networks:
-      main:
-        aliases:
-          - ai-classifier
       internal:
         aliases:
           - ai-classifier
