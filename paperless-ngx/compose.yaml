@@ -1,0 +1,93 @@
+services:
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.17.1
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.paperless.rule=Host(`paperless.fzymgc.house`)"
+      - "traefik.http.routers.paperless.entrypoints=websecure"
+      - "traefik.http.routers.paperless.tls=true"
+      - "traefik.http.routers.paperless.tls.certresolver=cloudflare"
+      - "traefik.http.services.paperless.loadbalancer.server.port=8000"
+      - "traefik.http.routers.paperless.middlewares=authentik@file"
+    depends_on:
+      - db
+      - valkey
+      - tika
+      - gotenberg
+    volumes:
+      - /mnt/paperless-data/data/paperless:/usr/src/paperless/data
+      - /mnt/paperless-data/storage/media:/usr/src/paperless/media
+      - /mnt/paperless-data/export:/usr/src/paperless/export
+      - /mnt/paperless-data/ingestion:/usr/src/paperless/consume
+    env_file: .env
+    environment:
+      PAPERLESS_REDIS: redis://valkey:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
+      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+      PAPERLESS_URL: https://paperless.fzymgc.house
+      PAPERLESS_ALLOWED_HOSTS: paperless.fzymgc.house
+      PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
+      PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
+    networks:
+      main:
+        aliases:
+          - paperless
+      internal:
+        aliases:
+          - paperless
+
+  db:
+    image: docker.io/library/postgres:17.6-alpine
+    restart: unless-stopped
+    volumes:
+      - /mnt/paperless-data/data/postgres:/var/lib/postgresql/data
+    env_file: .env
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      internal:
+        aliases:
+          - db
+
+  valkey:
+    image: valkey/valkey:8.1.3-alpine
+    restart: unless-stopped
+    volumes:
+      - /mnt/paperless-data/data/valkey:/data
+    networks:
+      internal:
+        aliases:
+          - valkey
+
+  tika:
+    image: ghcr.io/paperless-ngx/tika:2.9.1
+    restart: unless-stopped
+    networks:
+      internal:
+        aliases:
+          - tika
+
+  gotenberg:
+    image: docker.io/gotenberg/gotenberg:8.23.0
+    restart: unless-stopped
+    command:
+      - "gotenberg"
+      - "--chromium-disable-javascript=true"
+      - "--chromium-allow-list=file:///tmp/.*"
+    networks:
+      internal:
+        aliases:
+          - gotenberg
+
+networks:
+  main:
+    name: main-bridge
+    external: true
+  internal:
+    name: internal-bridge
+    external: true
