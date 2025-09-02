@@ -23,6 +23,10 @@ services:
       - /etc/ssl/certs:/etc/ssl/certs:ro
     env_file: .env
     environment:
+      PAPERLESS_CONSUMER_DELETE_DUPLICATES: "true"
+      PAPERLESS_CONSUMER_RECURSIVE: "true"
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
+
       PAPERLESS_REDIS: redis://valkey:6379
       PAPERLESS_DBHOST: db
       PAPERLESS_TIKA_ENABLED: 1
@@ -43,9 +47,12 @@ services:
                 "client_id": "${PAPERLESS_OIDC_CLIENT_ID}",
                 "secret": "${PAPERLESS_OIDC_CLIENT_SECRET}",
                 "settings": {
-                  "server_url": "https://auth.fzymgc.house/application/o/paperless/.well-known/openid-configuration"
+                  "server_url": "https://auth.fzymgc.house/application/o/paperless/.well-known/openid-configuration",
+                  "fetch_userinfo": "True",
+
                 }
-              }
+              },
+              "SCOPE": ["openid", "email", "profile", "groups"]
             ],
             "OAUTH_PKCE_ENABLED": "True"
           }
@@ -102,6 +109,24 @@ services:
       internal:
         aliases:
           - gotenberg
+
+  ai-classifier:
+    image: docker.io/clusterzx/paperless-ai:3.0.7
+    restart: unless-stopped
+    volumes:
+      - /mnt/paperless-data/data/ai-classifier:/data
+    env_file: .env
+    ports:
+      - "3000:3000"
+    environment:
+      PAPERLESS_API_URL: http://webserver:8000
+    networks:
+      main:
+        aliases:
+          - ai-classifier
+      internal:
+        aliases:
+          - ai-classifier
 
 networks:
   main:
