@@ -65,7 +65,7 @@ services:
           - valkey
 
   tika:
-    image: ghcr.io/paperless-ngx/tika:2.9.1
+    image: docker.io/apache/tika:3.2.2.0
     restart: unless-stopped
     networks:
       internal:
