@@ -106,6 +106,9 @@ services:
       - "3000:3000"
     environment:
       PAPERLESS_API_URL: http://webserver:8000
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /config-oauth-config
+    configs:
+      - oauth-config
     networks:
       internal:
         aliases:
@@ -121,3 +124,8 @@ networks:
   internal:
     name: internal-bridge
     external: true
+
+configs:
+  oauth-config:
+    file: ./oauth-config.json
+    

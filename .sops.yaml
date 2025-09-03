@@ -2,3 +2,6 @@ creation_rules:
   - path_regex: .*/\.env\.enc$
     age: >-
       age1ceu30hc9e92ytskzfv2hzw7d2wpvw9h4zdxznjst4540n8na537q8tj6lw
+  - path_regex: .*/.*\.json\.enc$
+    age: >-
+      age1ceu30hc9e92ytskzfv2hzw7d2wpvw9h4zdxznjst4540n8na537q8tj6lw
