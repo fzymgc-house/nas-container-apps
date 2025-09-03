@@ -35,9 +35,6 @@ services:
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
       PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-      PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /config-oauth-config
-    configs:
-      - oauth-config
     networks:
       main:
         aliases:
@@ -110,9 +107,6 @@ services:
     environment:
       PAPERLESS_API_URL: http://webserver:8000
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-      PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /config-oauth-config
-    configs:
-      - oauth-config
     networks:
       internal:
         aliases:
@@ -129,7 +123,4 @@ networks:
     name: internal-bridge
     external: true
 
-configs:
-  oauth-config:
-    file: ./oauth-config.json
     
