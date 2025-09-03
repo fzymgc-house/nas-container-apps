@@ -8,8 +8,7 @@ services:
       - "traefik.http.routers.paperless.entrypoints=websecure"
       - "traefik.http.routers.paperless.tls=true"
       - "traefik.http.routers.paperless.tls.certresolver=cloudflare"
-      - "traefik.http.services.paperless.loadbalancer.server.port=8000"
-      - "traefik.http.routers.paperless.middlewares=authentik@file"
+      - "traefik.http.services.paperless.loadbalancer.server.port=8000" 
     depends_on:
       - db
       - valkey
@@ -26,7 +25,6 @@ services:
       PAPERLESS_CONSUMER_DELETE_DUPLICATES: "true"
       PAPERLESS_CONSUMER_RECURSIVE: "true"
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-
       PAPERLESS_REDIS: redis://valkey:6379
       PAPERLESS_DBHOST: db
       PAPERLESS_TIKA_ENABLED: 1
