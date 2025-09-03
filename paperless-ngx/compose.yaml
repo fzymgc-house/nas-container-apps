@@ -66,7 +66,7 @@ services:
           - paperless
 
   db:
-    image: docker.io/library/postgres:17.6-alpine
+    image: docker.io/library/postgres:17.6-alpine@sha256:3406990b6e4c7192317b6fdc5680498744f6142f01f0287f4ee0420d8c74063c
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/postgres:/var/lib/postgresql/data
@@ -81,7 +81,7 @@ services:
           - db
 
   valkey:
-    image: valkey/valkey:8.1.3-alpine
+    image: valkey/valkey:8.1.3-alpine@sha256:d827e7f7552cdee40cc7482dbae9da020f42bc47669af6f71182a4ef76a22773
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/valkey:/data
@@ -91,7 +91,7 @@ services:
           - valkey
 
   tika:
-    image: docker.io/apache/tika:3.2.2.0
+    image: docker.io/apache/tika:3.2.2.0@sha256:031530a4b81f37454631ce9352b07cedfd03d83c875b05677d80bff6958d11ff
     restart: unless-stopped
     networks:
       internal:
@@ -99,7 +99,7 @@ services:
           - tika
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.23.0
+    image: docker.io/gotenberg/gotenberg:8.23.0@sha256:3e9d970c395dfd7f0f98fd8da5adc01dab6bf95881d8d232f77a9feafe6d4977
     restart: unless-stopped
     command:
       - "gotenberg"
@@ -111,7 +111,7 @@ services:
           - gotenberg
 
   ai-classifier:
-    image: docker.io/clusterzx/paperless-ai:3.0.7
+    image: docker.io/clusterzx/paperless-ai:3.0.7@sha256:25e1c501891e2d409f1df92e64e4e20b379a0197b7cd35cf98b49184d9da6814
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.paperless-ai-classifier.rule=Host(`paperless.fzymgc.house`) && PathPrefix(`/ai-classifier`)"
