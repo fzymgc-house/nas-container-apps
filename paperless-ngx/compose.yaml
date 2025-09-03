@@ -35,26 +35,6 @@ services:
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
       PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-      PAPERLESS_SOCIALACCOUNT_PROVIDERS: >
-        {
-          "openid_connect": {
-            "APPS": [
-              {
-                "provider_id": "authentik",
-                "name": "Authentik",
-                "client_id": "${PAPERLESS_OIDC_CLIENT_ID}",
-                "secret": "${PAPERLESS_OIDC_CLIENT_SECRET}",
-                "settings": {
-                  "server_url": "https://auth.fzymgc.house/application/o/paperless/.well-known/openid-configuration",
-                  "fetch_userinfo": "True",
-
-                }
-              },
-              "SCOPE": ["openid", "email", "profile", "groups"]
-            ],
-            "OAUTH_PKCE_ENABLED": "True"
-          }
-        }      
     networks:
       main:
         aliases:
