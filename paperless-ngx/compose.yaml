@@ -100,14 +100,19 @@ services:
       - "traefik.http.services.paperless-ai-classifier.loadbalancer.server.port=3000"
       - "traefik.http.routers.paperless-ai-classifier.middlewares=authentik@file"
     restart: unless-stopped
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges=true
     volumes:
-      - /mnt/paperless-data/data/ai-classifier:/data
+      - /mnt/paperless-data/data/ai-classifier:/app/data
     env_file: .env
     ports:
       - "3000:3000"
     environment:
-      PAPERLESS_API_URL: http://webserver:8000
-      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_API_URL: http://paperless:8000      
+      RAG_SERVICE_URL: http://paperless:8000
+      RAG_SERVICE_ENABLED: true
     networks:
       internal:
         aliases:
