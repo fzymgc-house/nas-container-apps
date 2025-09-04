@@ -111,8 +111,6 @@ services:
       - "3000:3000"
     environment:
       PAPERLESS_API_URL: http://paperless:8000/api
-      RAG_SERVICE_URL: http://paperless:8000/api
-      RAG_SERVICE_ENABLED: true
     networks:
       internal:
         aliases:
