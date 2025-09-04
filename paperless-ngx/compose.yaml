@@ -31,7 +31,7 @@ services:
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
       PAPERLESS_URL: https://paperless.fzymgc.house
-      PAPERLESS_ALLOWED_HOSTS: paperless.fzymgc.house,paperless
+      PAPERLESS_ALLOWED_HOSTS: paperless.fzymgc.house,paperless,webserver
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
       PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
