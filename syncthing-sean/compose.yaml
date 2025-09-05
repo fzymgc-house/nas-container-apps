@@ -9,7 +9,7 @@ services:
       - "traefik.http.routers.syncthing-sean.tls.certresolver=letsencrypt"
       - "traefik.http.services.syncthing-sean.loadbalancer.server.port=20910"
     hostname: syncthing-sean
-    image: docker.io/syncthing/syncthing:latest@sha256:2a1eaba4d4dd5f63994039c8506c19518d87fb964953c60c310588e52034d220
+    image: docker.io/syncthing/syncthing:latest@sha256:9f78e172614132f96befeec5c857164222df0da99aaf7620355c2d5d8ce09dac
     environment:
       UID: 568
       GID: 568
