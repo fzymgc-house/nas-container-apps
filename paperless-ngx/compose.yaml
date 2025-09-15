@@ -26,7 +26,7 @@ services:
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
       PAPERLESS_CONSUMER_DELETE_DUPLICATES: "true"
       PAPERLESS_CONSUMER_RECURSIVE: "true"
-      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "false"
       PAPERLESS_CORS_ALLOWED_HOSTS: https://paperless.fzymgc.house
       PAPERLESS_DBHOST: db
       PAPERLESS_ENABLE_ALLAUTH: "true"
@@ -37,6 +37,8 @@ services:
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TRUSTED_PROXIES: 172.16.0.0/12,192.168.0.0/16,10.0.0.0/8
       PAPERLESS_URL: https://paperless.fzymgc.house
+      PAPERLESS_WEBSERVER_WORKERS: 4
+      PAPERLESS_ENABLE_FLOWER: "true"
     networks:
       main:
         aliases:
