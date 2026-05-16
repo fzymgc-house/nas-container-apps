@@ -48,7 +48,7 @@ services:
           - paperless
 
   db:
-    image: docker.io/library/postgres:17.6-alpine@sha256:3406990b6e4c7192317b6fdc5680498744f6142f01f0287f4ee0420d8c74063c
+    image: docker.io/library/postgres:18.4-alpine@sha256:96d56f7f57c6aacd1fcb908bc83b345ec5f83231ee486dd66a1baadce274db88
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/postgres:/var/lib/postgresql/data
