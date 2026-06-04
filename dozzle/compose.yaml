@@ -1,6 +1,6 @@
 services:
   dozzle:
-    image: amir20/dozzle:latest@sha256:f861c15d67ebf6755e0e21907a22df6430873838616d8bbe03dc690cadcac265
+    image: amir20/dozzle:latest@sha256:fa12525776bf665147d82bf031ff262ee89a0a12454122558a353ec38ada4aaf
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.dozzle.rule=Host(`nas-dozzle.fzymgc.house`)"
