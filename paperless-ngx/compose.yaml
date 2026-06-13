@@ -81,7 +81,7 @@ services:
           - tika
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.23.0@sha256:3e9d970c395dfd7f0f98fd8da5adc01dab6bf95881d8d232f77a9feafe6d4977
+    image: docker.io/gotenberg/gotenberg:8.34.0@sha256:67097317623a503ba2a6a7e9ae8db6929a1f7e1bbd88077bacf2d325fbdab923
     restart: unless-stopped
     command:
       - "gotenberg"
