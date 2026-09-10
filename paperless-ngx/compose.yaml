@@ -63,7 +63,7 @@ services:
           - db
 
   valkey:
-    image: valkey/valkey:8.1.3-alpine@sha256:d827e7f7552cdee40cc7482dbae9da020f42bc47669af6f71182a4ef76a22773
+    image: valkey/valkey:8.1.10-alpine@sha256:d2e18f3410b6f616de1417f570fa55261af2898b9c5b2cfb6781ce2373ea43d1
     restart: unless-stopped
     volumes:
       - /mnt/paperless-data/data/valkey:/data
@@ -81,7 +81,7 @@ services:
           - tika
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.23.0@sha256:3e9d970c395dfd7f0f98fd8da5adc01dab6bf95881d8d232f77a9feafe6d4977
+    image: docker.io/gotenberg/gotenberg:8.23.2@sha256:56c47f7b913f3b978554115a0191c4a9dcc2558f9090f27f3f13f28a7c2f8329
     restart: unless-stopped
     command:
       - "gotenberg"
@@ -93,7 +93,7 @@ services:
           - gotenberg
 
   ai-classifier:
-    image: docker.io/clusterzx/paperless-ai:3.0.7@sha256:25e1c501891e2d409f1df92e64e4e20b379a0197b7cd35cf98b49184d9da6814
+    image: docker.io/clusterzx/paperless-ai:3.0.9@sha256:2b65888163fd59716f1c8285b31c5bd0b30c9c3c192c42b516688e3887d4ba60
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.paperless-ai-classifier.rule=Host(`paperless.fzymgc.house`) && PathPrefix(`/ai-classifier`)"
