@@ -53,7 +53,7 @@ services:
         aliases:
           - chrome
   meilisearch:
-    image: getmeili/meilisearch:v1.16.0@sha256:c0c45cb82a96221d7c855d1cc36ca04ff4b3ce6330fbd8df5ba82e86e632a053
+    image: getmeili/meilisearch:v1.57.0@sha256:91bf09897482c17205c8faeca8daa8d57999fb9de20d862763cdfa92ba4ec790
     restart: unless-stopped
     command:
       - meilisearch
