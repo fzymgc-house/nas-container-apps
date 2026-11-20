@@ -73,7 +73,7 @@ services:
           - valkey
 
   tika:
-    image: docker.io/apache/tika:3.2.2.0@sha256:031530a4b81f37454631ce9352b07cedfd03d83c875b05677d80bff6958d11ff
+    image: docker.io/apache/tika:3.3.3.0@sha256:326b238b37904c94ff61fed87afe0af72e6a29fa715933b10af97b7d56f1d4cb
     restart: unless-stopped
     networks:
       internal:
